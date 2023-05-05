@@ -393,7 +393,7 @@ msgid "Rules for Meter to Meter Ratio"
 msgstr "Règles pour le ratio de mesure"
 
 #. module: mro_pm
-#: code:addons/mro_pm/asset.py:38
+#: code:addons/models/mro_pm/asset.py:38
 #: view:asset.asset:mro_pm.assets_form_view
 #, python-format
 msgid "Scheduling Rules"

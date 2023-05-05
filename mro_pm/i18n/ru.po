@@ -535,7 +535,7 @@ msgid "Scheduling Rules"
 msgstr "Правила ППР"
 
 #. module: mro_pm
-#: code:addons/mro_pm/asset.py:38
+#: code:addons/models/mro_pm/asset.py:38
 #, python-format
 msgid "Scheduling Rules"
 msgstr "Правила ППР"
