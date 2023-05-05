@@ -29,15 +29,19 @@ Support following feature:
     'category': 'Industries',
     'sequence': 0,
     'depends': ['stock'],
-    'demo': ['asset_demo.xml'],
+    'demo': ['data/asset_demo.xml'],
     'data': [
         'security/asset_security.xml',
         'security/ir.model.access.csv',
-        'asset_view.xml',
-        'asset_data.xml',
-        'stock_data.xml',
-        'views/asset.xml',
+        'views/asset_view.xml',
+        'data/asset_data.xml',
+        'data/stock_data.xml',
     ],
+    "assets": {
+        "web.assets_backend": [
+            "/asset/static/src/css/asset.css",
+        ]
+    },
     'installable': True,
     'application': True,
 }

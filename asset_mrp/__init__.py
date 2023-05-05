@@ -6,5 +6,4 @@
 #
 ##############################################################################
 
-from . import asset
-from . import mrp
+from . import models

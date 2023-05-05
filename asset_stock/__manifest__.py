@@ -23,10 +23,10 @@ Keep one entity in one place for escape mistakes!
     'category': 'Industries',
     'sequence': 0,
     'depends': ['asset'],
-    'demo': ['asset_demo.xml'],
+    'demo': ['data/asset_demo.xml'],
     'data': [
         'security/ir.model.access.csv',
-        'stock_view.xml'
+        'views/stock_view.xml'
     ],
     'installable': True,
 }

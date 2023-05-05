@@ -6,7 +6,5 @@
 #
 ##############################################################################
 
-from . import mro_pm
-from . import asset
-from . import mro
 from . import wizard
+from . import models

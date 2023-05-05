@@ -9,7 +9,8 @@
 from odoo import api, fields, models
 from odoo import netsvc
 
-class mro_request_reject(models.TransientModel):
+
+class MroRequestReject(models.TransientModel):
     _name = 'mro.request.reject'
     _description = 'Reject Request'
 

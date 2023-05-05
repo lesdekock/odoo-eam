@@ -28,10 +28,10 @@ Keep one entity in one place for escape mistakes!
     'category': 'Industries',
     'sequence': 0,
     'depends': ['asset','mrp'],
-    'demo': ['asset_demo.xml'],
+    'demo': ['data/asset_demo.xml'],
     'data': [
         'security/ir.model.access.csv',
-        'mrp_view.xml'
+        'views/mrp_view.xml'
     ],
     'installable': True,
 }

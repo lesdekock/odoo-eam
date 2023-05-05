@@ -15,3 +15,4 @@ access_mro_pm_rule_user,mro.pm.rule user,model_mro_pm_rule,asset.group_mro_user,
 access_mro_pm_rule_line_user,mro.pm.rule.line user,model_mro_pm_rule_line,asset.group_mro_user,1,0,0,0
 access_mro_pm_meter_customer,mro.pm.meter customer,model_mro_pm_meter,asset.group_mro_customer,1,0,0,0
 access_mro_pm_meter_line_customer,mro.pm.meter.line customer,model_mro_pm_meter_line,asset.group_mro_customer,1,0,0,0
+access_mro_pm_replan,mro.access_mro_pm_replan,model_mro_pm_replan,asset.group_mro_manager,1,1,1,1

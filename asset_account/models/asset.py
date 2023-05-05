@@ -7,10 +7,12 @@
 ##############################################################################
 
 from odoo import api, fields, models
-from odoo.addons.asset.asset import STATE_COLOR_SELECTION
+from odoo.addons.asset.models.asset import STATE_COLOR_SELECTION
 
 
-class asset_asset(models.Model):
+class AssetAsset(models.Model):
     _inherit = 'asset.asset'
 
-    accounting_state_color = fields.Selection(related='accounting_state_id.state_color', selection=STATE_COLOR_SELECTION, string="Color", readonly=True)
+    accounting_state_color = fields.Selection(
+        related='accounting_state_id.state_color', string="Accounting state color", readonly=True
+    )

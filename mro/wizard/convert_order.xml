@@ -17,12 +17,20 @@
             </field>
         </record>
 
-        <act_window name="Convert to Task"
+        <record id="action_view_convert_order" model="ir.actions.act_window">
+            <field name="name">Convert to Task</field>
+            <field name="res_model">mro.convert.order</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="mro.model_mro_order"/>
+        </record>
+
+        <!--<act_window name="Convert to Task"
             res_model="mro.convert.order"
             binding_model="mro.order"
             target="new"
             view_mode="form"
-            id="action_view_convert_order"/>
+            id="action_view_convert_order"/>-->
 
     </data>
 </openerp>
