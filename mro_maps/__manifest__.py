@@ -21,10 +21,10 @@ Support following feature:
     'license': 'AGPL-3',
     'website': 'http://codup.com',
     'sequence': 0,
-    'depends': ['asset_map','mro','web_maps'],
+    'depends': ['asset_map', 'mro', 'web_maps'],
     'data': [
         'views/mro_workorder_view.xml',
     ],
-    'installable': True,
+    'installable': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
