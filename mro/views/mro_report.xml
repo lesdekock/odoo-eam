@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_report_maintenance_order" model="ir.actions.report">
+            <field name="name">Maintenance Order</field>
+            <field name="model">mro.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mro.report_mro_order</field>
+            <field name="report_file">mro.report_mro_order</field>
+            <field name="binding_model_id" ref="mro.model_mro_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!--<report
+            string="Maintenance Order"
+            id="action_report_maintenance_order"
+            model="mro.order"
+            name="mro.report_mro_order"
+            file="mro.report_mro_order"
+            report_type="qweb-pdf"
+        />-->
+
+        <record id="action_report_maintenance_request" model="ir.actions.report">
+            <field name="name">Maintenance Request</field>
+            <field name="model">mro.request</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mro.report_mro_request</field>
+            <field name="report_file">mro.report_mro_request</field>
+            <field name="binding_model_id" ref="mro.model_mro_request"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!--<report
+            string="Maintenance Request"
+            id="action_report_maintenance_request"
+            model="mro.request"
+            name="mro.report_mro_request"
+            file="mro.report_mro_request"
+            report_type="qweb-pdf"
+        />-->
+
+    </data>
+</odoo>

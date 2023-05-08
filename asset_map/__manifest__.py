@@ -21,13 +21,13 @@ Support following feature:
     'license': 'AGPL-3',
     'website': 'http://codup.com',
     'sequence': 0,
-    'depends': ['asset','web_map'],
+    'depends': ['asset', 'web_map'],
     'data': [
         'views/asset_view.xml',
     ],
     'demo': [
         'demo/asset_demo.xml',
     ],
-    'installable': True,
+    'installable': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
