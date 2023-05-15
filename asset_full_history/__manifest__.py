@@ -11,7 +11,7 @@
     'version': '1.4',
     'summary': 'Track Asset History',
     'description': """
-Track all Asset Hystory in Odoo.
+Track all Asset History in Odoo.
 ===========================
 Support following feature:
     * Track changes in all fields

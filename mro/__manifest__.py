@@ -36,7 +36,7 @@ Required modules:
     'license': 'AGPL-3',
     'category': 'Industries',
     'sequence': 0,
-    'depends': ['asset','purchase'],
+    'depends': ['asset', 'purchase'],
     'demo': ['data/mro_demo.xml'],
     'data': [
         'security/mro_security.xml',

@@ -22,7 +22,7 @@ Keep one entity in one place for escape mistakes!
     'license': 'AGPL-3',
     'category': 'Industries',
     'sequence': 0,
-    'depends': ['purchase','asset'],
+    'depends': ['purchase', 'asset'],
     'demo': ['data/asset_demo.xml'],
     'data': [
         'security/ir.model.access.csv',
