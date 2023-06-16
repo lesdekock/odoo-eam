@@ -76,7 +76,7 @@ class MroOrder(models.Model):
         'asset.asset', 'Asset', required=True, readonly=True, states={'draft': [('readonly', False)]}
     )
     date_planned = fields.Datetime(
-        'Planned Date', required=True, readonly=True, states={'draft':[('readonly',False)]},
+        'Planned Date', required=True, readonly=True, states={'draft': [('readonly',False)]},
         default=time.strftime('%Y-%m-%d %H:%M:%S')
     )
     date_scheduled = fields.Datetime(

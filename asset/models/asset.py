@@ -65,7 +65,7 @@ class AssetAsset(models.Model):
     """
     _name = 'asset.asset'
     _description = 'Asset'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'image.mixin']
 
     def _read_group_state_ids(self, domain, read_group_order=None, access_rights_uid=None, team='3'):
         access_rights_uid = access_rights_uid or self._uid
@@ -78,7 +78,7 @@ class AssetAsset(models.Model):
         # - ('id', 'in', 'ids'): add columns that should be present
         # - OR ('team','=',team): add default columns that belongs team
         search_domain = []
-        search_domain += ['|', ('team','=',team)]
+        search_domain += ['|', ('team', '=', team)]
         search_domain += [('id', 'in', ids)]
         stage_ids = stage_obj._search(search_domain, order=order, access_rights_uid=access_rights_uid)
         result = stage_obj.name_get(access_rights_uid, stage_ids)
@@ -133,9 +133,6 @@ class AssetAsset(models.Model):
     purchase_date = fields.Date(string='Purchase Date')
     warranty_start_date = fields.Date(string='Warranty Start')
     warranty_end_date = fields.Date(string='Warranty End')
-    image = fields.Binary(string="Image")
-    image_small = fields.Binary(string="Small-sized image")
-    image_medium = fields.Binary(string="Medium-sized image")
     category_ids = fields.Many2many(
         comodel_name='asset.category', column1='asset_id', column2='category_id', string='Tags'
     )
@@ -150,11 +147,11 @@ class AssetAsset(models.Model):
 
     @api.model
     def create(self, vals):
-        if 'image' in vals:
-            vals['image_small'] = vals['image_medium'] = vals['image']
+        # if 'image' in vals:
+        #     vals['image_128'] = vals['image_512'] = vals['image']
         return super(AssetAsset, self).create(vals)
 
     def write(self, vals):
-        if 'image' in vals:
-            vals['image_small'] = vals['image_medium'] = vals['image']
+        # if 'image' in vals:
+        #     vals['image_128'] = vals['image_512'] = vals['image']
         return super(AssetAsset, self).write(vals)

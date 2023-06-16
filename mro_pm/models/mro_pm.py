@@ -101,7 +101,7 @@ class MroPmMeter(models.Model):
     parent_ratio_id = fields.Many2one('mro.pm.meter.ratio', 'Ratio to Source', ondelete='restrict')
     utilization = fields.Float(compute='_get_utilization', string='Utilization (per day)')
     min_utilization = fields.Float('Min Utilization (per day)', required=True, default=10)
-    av_time = fields.Float('Averaging time (days)', required=True)
+    av_time = fields.Float('Averaging time (days)', required=True, default=0.00)
 
     def get_reading(self, date):
         D = 1.0 * calendar.timegm(time.strptime(str(date), "%Y-%m-%d %H:%M:%S"))
