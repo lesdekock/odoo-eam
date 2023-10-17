@@ -39,7 +39,7 @@ Support following feature:
     ],
     "assets": {
         "web.assets_backend": [
-            "/asset/static/src/css/asset.css",
+            "/asset/static/src/css/asset.scss",
         ]
     },
     'installable': True,

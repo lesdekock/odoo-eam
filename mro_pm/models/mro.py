@@ -154,9 +154,9 @@ class MroOrder(models.Model):
             for line in task.parts_lines:
                 parts_lines.append([0, 0, {
                     'name': line.name,
-                    'parts_id': line.parts_id.id,
-                    'parts_qty': line.parts_qty,
-                    'parts_uom': line.parts_uom.id,
+                    'part_id': line.part_id.id,
+                    'part_uom_qty': line.part_uom_qty,
+                    'part_uom': line.part_uom.id,
                 }])
             values['parts_lines'] = parts_lines
             order.write(values)
@@ -206,9 +206,9 @@ class MroOrder(models.Model):
             for line in task.parts_lines:
                 parts_lines.append([0, 0, {
                     'name': line.name,
-                    'parts_id': line.parts_id.id,
-                    'parts_qty': line.parts_qty,
-                    'parts_uom': line.parts_uom.id,
+                    'part_id': line.part_id.id,
+                    'part_uom_qty': line.part_uom_qty,
+                    'part_uom': line.part_uom.id,
                 }])
             values['parts_lines'] = parts_lines
             self.create(values)

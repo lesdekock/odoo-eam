@@ -64,7 +64,7 @@
                                     </td>
                                     <td class="text-right">
                                         <span t-field="line.parts_qty"/>
-                                        <span t-field="line.parts_uom.name" groups="product.group_uom"/>
+                                        <span t-field="line.parts_uom.name" groups="uom.group_uom"/>
                                     </td>
                                     <td>
                                         <span t-field="line.name"/>

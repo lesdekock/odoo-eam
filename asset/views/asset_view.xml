@@ -5,14 +5,14 @@
         <!-- Top menu item -->
         <menuitem name="Maintenance"
             id="base.menu_mro_root" web_icon="asset,static/description/maint.png"
-            sequence="80"/>
+            sequence="35"/>
 
         <!-- Asset menu -->
         <menuitem name="Assets"
             id="menu_maintenance_assets"
             parent="base.menu_mro_root"
             groups="asset.group_mro_customer"
-            sequence="9"/>
+            sequence="5"/>
 
         <!-- Asset Tree View  -->
         <record id="assets_tree_view" model="ir.ui.view">

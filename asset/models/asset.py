@@ -65,7 +65,7 @@ class AssetAsset(models.Model):
     """
     _name = 'asset.asset'
     _description = 'Asset'
-    _inherit = ['mail.thread', 'image.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'image.mixin']
 
     def _read_group_state_ids(self, domain, read_group_order=None, access_rights_uid=None, team='3'):
         access_rights_uid = access_rights_uid or self._uid
@@ -119,9 +119,11 @@ class AssetAsset(models.Model):
     )
     criticality = fields.Selection(selection=CRITICALITY_SELECTION, string='Criticality')
     property_stock_asset = fields.Many2one(
-        comodel_name='stock.location', string="Asset Location",
-        company_dependent=True, domain=[('usage', 'like', 'asset')],
-        help="This location will be used as the destination location for installed parts during asset life.")
+        comodel_name='stock.location', string="Asset Location", company_dependent=True,  check_company=True,
+        domain="[('usage', 'like', 'asset'),"
+               "'|' , ('company_id', '=', False), ('company_id', '=', allowed_company_ids[0])]",
+        help="This location will be used as 3the destination location for installed parts during asset life."
+    )
     user_id = fields.Many2one(comodel_name='res.users', string='Assigned to', tracking=True)
     active = fields.Boolean(string='Active', default=True)
     asset_number = fields.Char(string='Asset Number', size=64)
