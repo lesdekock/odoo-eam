@@ -270,7 +270,7 @@ class MroOrder(models.Model):
                     del vals['date_execution']
         res = super(MroOrder, self).write(vals)
         if 'parts_lines' in vals:
-            res.parts_lines._action_launch_stock_rule()
+            self.parts_lines._action_launch_stock_rule()
         return res
 
 
