@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
+    
 
         <!-- Spare Parts -->
         <record id="product_product_mro_pump" model="product.product">
@@ -66,5 +66,5 @@
             <field eval="[(0,0,{'parts_id':ref('product_product_mro_water'),'parts_qty':10,'parts_uom':ref('uom.product_uom_litre')})]" name="parts_lines"/>
         </record>
 
-    </data>
+    
 </odoo>

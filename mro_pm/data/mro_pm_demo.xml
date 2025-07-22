@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo>
+    
 
         <!-- Partners -->
         <record id="res_partner_asset_5" model="res.partner">
@@ -291,5 +291,5 @@
 
         <function model="mro.order" name="replan_pm"/>
 
-    </data>
-</openerp>
+    
+</odoo>

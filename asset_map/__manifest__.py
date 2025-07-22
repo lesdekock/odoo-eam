@@ -8,7 +8,7 @@
 
 {
     'name': 'Asset Map',
-    'version': '0.3',
+    'version': '17.0.1.0',
     'category': 'Industries',
     'summary': 'Show asset position',
     'description': """

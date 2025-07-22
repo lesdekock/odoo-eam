@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    
 
         <record id="action_report_maintenance_order" model="ir.actions.report">
             <field name="name">Maintenance Order</field>
@@ -40,5 +40,5 @@
             report_type="qweb-pdf"
         />-->
 
-    </data>
+    
 </odoo>

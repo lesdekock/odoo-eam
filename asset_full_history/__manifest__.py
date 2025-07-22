@@ -8,7 +8,7 @@
 
 {
     'name': 'Asset Full History',
-    'version': '1.4',
+    'version': '17.0.1.0',
     'summary': 'Track Asset History',
     'description': """
 Track all Asset History in Odoo.

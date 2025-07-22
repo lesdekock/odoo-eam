@@ -8,7 +8,7 @@
 
 {
     'name': 'Assets & Purchase',
-    'version': '1.5',
+    'version': '17.0.1.0',
     'summary': 'Integrate Asset and Purchase',
     'description': """
 Integrate Maintenance and Purchase.

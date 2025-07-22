@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo>
+    
 
         <!-- Assets -->
         <record id="asset.asset_asset_1" model="asset.asset">
@@ -27,5 +27,5 @@
             <field name="position">{"position":{"lat":48.85488738974392,"lng":2.359554294962436},"zoom":13}</field>
         </record>
 
-    </data>
-</openerp>
+    
+</odoo>

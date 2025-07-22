@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
+    
 
         <!-- Maintenance Request related subtypes for messaging / Chatter -->
         <record id="mt_request_sent" model="mail.message.subtype">
@@ -49,7 +49,7 @@
         </record>
 
         <!-- Routes -->
-        <record id="route_maintenance" model='stock.location.route'>
+        <record id="route_maintenance" model='stock.route'>
             <field name="name">Maintenance</field>
             <field name="product_categ_selectable" eval="True"/>
             <field name="product_selectable" eval="False"/>
@@ -61,7 +61,7 @@
             <field name="action">pull</field>
             <field name="picking_type_id" ref="stock.picking_type_internal"/>
             <field name="location_src_id" ref="stock.stock_location_stock"/>
-            <field name="location_id" ref="asset.stock_location_assets"/>
+            <field name="location_dest_id" ref="asset.stock_location_assets"/>
             <field name="route_id" ref="mro.route_maintenance"/>
         </record>
 
@@ -72,5 +72,5 @@
             <field name="route_ids" eval="[(6,0,[ref('mro.route_maintenance')])]"/>
         </record>
 
-    </data>
+    
 </odoo>

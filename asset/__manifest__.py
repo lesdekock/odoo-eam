@@ -8,7 +8,7 @@
 
 {
     'name': 'Assets',
-    'version': '1.13',
+    'version': '17.0.1.0',
     'summary': 'Asset Management',
     'description': """
 Managing Assets in Odoo.
@@ -39,7 +39,7 @@ Support following feature:
     ],
     "assets": {
         "web.assets_backend": [
-            "/asset/static/src/css/asset.css",
+            "asset/static/src/css/asset.css",
         ]
     },
     'installable': True,

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<data>
+	
 
         <!-- Top menu item -->
         <menuitem name="Maintenance"
@@ -34,12 +34,12 @@
             <field name="name">mro.request.form</field>
             <field name="model">mro.request</field>
             <field name="arch" type="xml">
-                <form string="Maintenance Request" version="7.0">
+                <form string="Maintenance Request" >
                     <header>
-                        <button name="action_send" states="draft" string="Send Request" type="object" class="oe_highlight"/>
-                        <button name="action_confirm" states="claim" string="Confirm Request" type="object" class="oe_highlight" groups="asset.group_mro_user"/>
-                        <button name="%(action_request_reject)d" states="claim" string="Reject Request" type="action" groups="asset.group_mro_user"/>
-                        <button name="action_cancel" states="draft" string="Cancel" type="object"/>
+                        <button name="action_send" invisible="state != 'draft'" string="Send Request" type="object" class="oe_highlight"/>
+                        <button name="action_confirm" invisible="state != 'claim'" string="Confirm Request" type="object" class="oe_highlight" groups="asset.group_mro_user"/>
+                        <button name="%(action_request_reject)d" invisible="state != 'claim'" string="Reject Request" type="action" groups="asset.group_mro_user"/>
+                        <button name="action_cancel" invisible="state != 'draft'" string="Cancel" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,claim,run,done"/>
                     </header>
                     <sheet>
@@ -48,20 +48,20 @@
                         </div>
                         <group>
                             <group>
-                                <field name="asset_id"/>
-                                <field name="cause"/>
-                                <field name="breakdown"/>
+                                <field name="asset_id" readonly="state != 'draft'"/>
+                                <field name="cause" readonly="state != 'draft'"/>
+                                <field name="breakdown" readonly="state != 'draft'"/>
                             </group>
                             <group>
-                                <field name="requested_date" attrs="{'invisible':[('breakdown','=',True),('state','=','draft')],'readonly':[('state','!=','draft')]}"/>
-                                <field name="execution_date"/>
+                                <field name="requested_date" invisible="breakdown and state == 'draft'" readonly="state != 'draft'"/>
+                                <field name="execution_date" readonly="state not in ['draft', 'claim']"/>
                             </group>
                         </group>
-                        <group string="Reject Reason" states="reject">
+                        <group string="Reject Reason" invisible="state != 'reject'">
                             <field name="reject_reason" colspan="4" nolabel="1"/>
                         </group>
                         <group string="Description">
-                            <field name="description" colspan="4" nolabel="1"/>
+                            <field name="description" colspan="4" nolabel="1" readonly="state != 'draft'"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -140,16 +140,16 @@
             <field name="name">mro.order.form</field>
             <field name="model">mro.order</field>
             <field name="arch" type="xml">
-                <form string="Maintenance Orders" version="7.0">
+                <form string="Maintenance Orders" >
                     <header>
-                        <button name="action_confirm" states="draft" string="Confirm Maintenance" type="object" class="oe_highlight"/>
-                        <button name="action_done" states="ready" string="Done" type="object" class="oe_highlight"/>
-                        <button name="force_done" states="released" string="Done" type="object" class="oe_highlight"/>
-                        <button name="force_parts_reservation" states="released" string="Force Reservation" type="object"/>
+                        <button name="action_confirm" invisible="state != 'draft'" string="Confirm Maintenance" type="object" class="oe_highlight"/>
+                        <button name="action_done" invisible="state != 'ready'" string="Done" type="object" class="oe_highlight"/>
+                        <button name="force_done" invisible="state != 'released'" string="Done" type="object" class="oe_highlight"/>
+                        <button name="force_parts_reservation" invisible="state != 'released'" string="Force Reservation" type="object"/>
                         <!-- TODO: CODUP - Next 2 lines have been commented out. To be confirmed. (button_recreate_picking_parts and action_cancel -->
-                        <!--<button name="button_recreate_picking_parts" states="parts_except" string="Recreate Picking" type="object" class="oe_highlight"/>
-                        <button name="action_cancel" type="object" states="draft,ready,parts_except" string="Cancel"/>-->
-                        <button name="action_cancel" type="object" states="released" string="Cancel"/>
+                        <!--<button name="button_recreate_picking_parts" invisible="state != 'parts_except'" string="Recreate Picking" type="object" class="oe_highlight"/>
+                        <button name="action_cancel" type="object" invisible="state not in ['draft', 'ready', 'parts_except']" string="Cancel"/>-->
+                        <button name="action_cancel" type="object" invisible="state != 'released'" string="Cancel"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,ready,done" statusbar_colors='{"parts_except":"red","released":"blue"}'/>
                     </header>
                     <sheet>
@@ -158,33 +158,33 @@
                         </div>
                         <group>
                             <group>
-                                <field name="asset_id"/>
+                                <field name="asset_id" readonly="state != 'draft'"/>
                                 <field name="category_ids" invisible="1"/>
-                                <field name="maintenance_type"/>
-                                <label for="task_id" attrs="{'invisible':[('maintenance_type','=','bm')]}"/>
-                                <div attrs="{'invisible':[('maintenance_type','=','bm')]}">
-                                    <field name="task_id" attrs="{'required':[('maintenance_type','!=','bm')]}"/>
+                                <field name="maintenance_type" readonly="state != 'draft'"/>
+                                <label for="task_id" invisible="maintenance_type == 'bm'"/>
+                                <div invisible="maintenance_type == 'bm'">
+                                    <field name="task_id" required="maintenance_type != 'bm'" readonly="state != 'draft'"/>
                                 </div>
-                                <field name="description"/>
+                                <field name="description" readonly="state != 'draft'"/>
                             </group>
                             <group>
-                                <field name="date_planned"/>
-                                <field name="date_scheduled"/>
-                                <field name="date_execution"/>
+                                <field name="date_planned" readonly="state != 'draft'"/>
+                                <field name="date_scheduled" readonly="state not in ['draft', 'released', 'ready']"/>
+                                <field name="date_execution" readonly="state in ['done', 'cancel']"/>
                                 <field name="user_id"/>
-                                <field name="origin"/>
+                                <field name="origin" readonly="state != 'draft'"/>
                             </group>
                             <group groups="stock.group_stock_multi_locations,stock.group_stock_multi_warehouses">
                             </group>
                             <group>
-                                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                                <field name="company_id" groups="base.group_multi_company" widget="selection" readonly="state != 'draft'"/>
                             </group>
                         </group>
                         <notebook>
                             <!-- TODO: CODUP - Check Parts page view when new logic for V15.0 is executed -->
                             <page name="parts" string="Parts">
-                                    <group string="Planned Parts" states="draft,released,done,cancel">
-                                        <field name="parts_lines" nolabel="1" context="{'default_categ_id': context.get('default_categ_id')}">
+                                    <group string="Planned Parts">
+                                        <field name="parts_lines" nolabel="1" context="{'default_categ_id': context.get('default_categ_id')}" readonly="state != 'draft'">
                                             <tree string="Planned Parts" editable="bottom">
                                                 <field name="parts_id" domain="[('isParts','=',True)]" context="{'default_categ_id': context.get('default_categ_id')}"/>
                                                 <field name="parts_qty"/>
@@ -193,7 +193,7 @@
                                             </tree>
                                         </field>
                                     </group>
-                                    <group string="Available Parts" states="released">
+                                    <group string="Available Parts" invisible="state != 'released'">
                                         <field name="parts_ready_lines" nolabel="1" readonly="1">
                                             <tree string="Available Parts">
                                                 <field name="product_id" string="Parts"/>
@@ -203,7 +203,7 @@
                                             </tree>
                                         </field>
                                     </group>
-                                    <group string="Parts to Consume" states="ready">
+                                    <group string="Parts to Consume" invisible="state != 'ready'">
                                         <field name="parts_move_lines" nolabel="1" readonly="1">
                                             <tree string="Parts to Consume">
                                                 <field name="product_id" string="Parts"/>
@@ -213,7 +213,7 @@
                                             </tree>
                                         </field>
                                     </group>
-                                    <group string="Consumed Parts" states="ready,done">
+                                    <group string="Consumed Parts" invisible="state not in ['ready', 'done']">
                                         <field name="parts_moved_lines" nolabel="1" readonly="1">
                                            <tree string="Consumed Parts">
                                                <field name="product_id" readonly="1" string="Parts"/>
@@ -359,7 +359,7 @@
             <field name="name">mro.task.form</field>
             <field name="model">mro.task</field>
             <field name="arch" type="xml">
-                <form string="Tasks" version="7.0">
+                <form string="Tasks" >
                 <header>
                 </header>
                 <sheet>
@@ -423,5 +423,5 @@
             parent="menu_maintenance_tasks"
             sequence="100"/>
 
- 	</data>
+ 	
 </odoo>

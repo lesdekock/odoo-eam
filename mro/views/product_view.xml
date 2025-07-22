@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    
 
         <record id="mro_product_template_form_view" model="ir.ui.view">
             <field name="name">mro.product.template.common.form</field>
@@ -16,5 +16,5 @@
             </field>
         </record>
 
-    </data>
+    
 </odoo>

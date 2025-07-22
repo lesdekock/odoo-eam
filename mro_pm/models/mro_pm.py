@@ -83,11 +83,9 @@ class MroPmMeter(models.Model):
         for meter in self:
             meter.view_line_ids = self.env['mro.pm.meter.line'].search([('meter_id', '=', meter.id)], limit=1)
 
-    name = fields.Many2one('mro.pm.parameter', 'Meter', ondelete='restrict', required=True, readonly=True,
-                           states={'draft': [('readonly', False)]})
-    state = fields.Selection(STATE_SELECTION, 'Status', readonly=True, default='draft')
-    reading_type = fields.Selection(READING_TYPE_SELECTION, 'Reading Type', required=True, readonly=True,
-                                    states={'draft': [('readonly', False)]}, default='inc')
+    name = fields.Many2one('mro.pm.parameter', 'Meter', ondelete='restrict', required=True)
+    state = fields.Selection(STATE_SELECTION, 'Status', default='draft')
+    reading_type = fields.Selection(READING_TYPE_SELECTION, 'Reading Type', required=True, default='inc')
     meter_line_ids = fields.One2many('mro.pm.meter.line', 'meter_id', 'Meters')
     view_line_ids = fields.One2many('mro.pm.meter.line', compute='_get_lines')
     new_value = fields.Float('New value')
@@ -96,8 +94,7 @@ class MroPmMeter(models.Model):
     total_value = fields.Float(related='meter_line_ids.total_value', string='Total Value')
     meter_uom = fields.Many2one(related='name.parameter_uom', string='Unit of Measure', readonly=True)
     asset_id = fields.Many2one('asset.asset', 'Asset', ondelete='restrict')
-    parent_meter_id = fields.Many2one('mro.pm.meter', 'Source Meter', ondelete='restrict', readonly=True,
-                                      states={'draft': [('readonly', False)]})
+    parent_meter_id = fields.Many2one('mro.pm.meter', 'Source Meter', ondelete='restrict')
     parent_ratio_id = fields.Many2one('mro.pm.meter.ratio', 'Ratio to Source', ondelete='restrict')
     utilization = fields.Float(compute='_get_utilization', string='Utilization (per day)')
     min_utilization = fields.Float('Min Utilization (per day)', required=True, default=10)

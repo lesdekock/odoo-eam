@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-	<data>
-
+<odoo>
         <!-- Top menu item -->
         <menuitem name="Maintenance"
             id="base.menu_mro_root" web_icon="asset,static/description/maint.png"
@@ -34,7 +32,7 @@
             <field name="name">asset.asset.form</field>
             <field name="model">asset.asset</field>
             <field name="arch" type="xml">
-                <form string="Assets" version="7.0">
+                <form string="Assets">
                     <header>
                         <field name="maintenance_state_id" widget="statusbar" clickable="True" groups="asset.group_mro_user"/>
                     </header>
@@ -288,7 +286,7 @@
             <field name="name">asset.state.form</field>
             <field name="model">asset.state</field>
             <field name="arch" type="xml">
-                <form string="State" version="7.0">
+                <form string="form string="State" version="7.0"">
                     <sheet>
                         <div class="oe_title">
                             <label for="name"/>
@@ -372,5 +370,5 @@
             groups="asset.group_mro_manager"
             sequence="100"/>
 
- 	</data>
-</openerp>
+ 	
+</odoo>

@@ -67,39 +67,59 @@ class AssetAsset(models.Model):
     _description = 'Asset'
     _inherit = ['mail.thread', 'image.mixin']
 
-    def _read_group_state_ids(self, domain, read_group_order=None, access_rights_uid=None, team='3'):
-        access_rights_uid = access_rights_uid or self._uid
+    @api.model
+    def _read_group_state_ids(self, states, domain, order):
+        team = '3'
         stage_obj = self.env['asset.state']
-        order = stage_obj._order
-        # lame hack to allow reverting search, should just work in the trivial case
-        if read_group_order == 'stage_id desc':
-            order = "%s desc" % order
-        # write the domain
-        # - ('id', 'in', 'ids'): add columns that should be present
-        # - OR ('team','=',team): add default columns that belongs team
         search_domain = []
         search_domain += ['|', ('team', '=', team)]
-        search_domain += [('id', 'in', ids)]
-        stage_ids = stage_obj._search(search_domain, order=order, access_rights_uid=access_rights_uid)
-        result = stage_obj.name_get(access_rights_uid, stage_ids)
-        # restore order of the search
-        result.sort(lambda x,y: cmp(stage_ids.index(x[0]), stage_ids.index(y[0])))
-        return result, {}    
+        search_domain += [('id', 'in', states.ids)]
+        return stage_obj.search(search_domain, order=order)
 
-    def _read_group_finance_state_ids(self, domain, read_group_order=None, access_rights_uid=None):
-        return self._read_group_state_ids(domain, read_group_order, access_rights_uid, '0')
+    @api.model
+    def _read_group_finance_state_ids(self, states, domain, order):
+        team = '0'
+        stage_obj = self.env['asset.state']
+        search_domain = []
+        search_domain += ['|', ('team', '=', team)]
+        search_domain += [('id', 'in', states.ids)]
+        return stage_obj.search(search_domain, order=order)
 
-    def _read_group_warehouse_state_ids(self, domain, read_group_order=None, access_rights_uid=None):
-        return self._read_group_state_ids(domain, read_group_order, access_rights_uid, '1')
+    @api.model
+    def _read_group_warehouse_state_ids(self, states, domain, order):
+        team = '1'
+        stage_obj = self.env['asset.state']
+        search_domain = []
+        search_domain += ['|', ('team', '=', team)]
+        search_domain += [('id', 'in', states.ids)]
+        return stage_obj.search(search_domain, order=order)
 
-    def _read_group_manufacture_state_ids(self, domain, read_group_order=None, access_rights_uid=None):
-        return self._read_group_state_ids(domain, read_group_order, access_rights_uid, '2')
+    @api.model
+    def _read_group_manufacture_state_ids(self, states, domain, order):
+        team = '2'
+        stage_obj = self.env['asset.state']
+        search_domain = []
+        search_domain += ['|', ('team', '=', team)]
+        search_domain += [('id', 'in', states.ids)]
+        return stage_obj.search(search_domain, order=order)
 
-    def _read_group_maintenance_state_ids(self, domain, read_group_order=None, access_rights_uid=None):
-        return self._read_group_state_ids(domain, read_group_order, access_rights_uid, '3')
+    @api.model
+    def _read_group_maintenance_state_ids(self, states, domain, order):
+        team = '3'
+        stage_obj = self.env['asset.state']
+        search_domain = []
+        search_domain += ['|', ('team', '=', team)]
+        search_domain += [('id', 'in', states.ids)]
+        return stage_obj.search(search_domain, order=order)
         
-    def _read_group_accounting_state_ids(self, domain, read_group_order=None, access_rights_uid=None):
-        return self._read_group_state_ids(domain, read_group_order, access_rights_uid, '4')
+    @api.model
+    def _read_group_accounting_state_ids(self, states, domain, order):
+        team = '4'
+        stage_obj = self.env['asset.state']
+        search_domain = []
+        search_domain += ['|', ('team', '=', team)]
+        search_domain += [('id', 'in', states.ids)]
+        return stage_obj.search(search_domain, order=order)
 
     CRITICALITY_SELECTION = [
         ('0', 'General'),
@@ -137,7 +157,7 @@ class AssetAsset(models.Model):
         comodel_name='asset.category', column1='asset_id', column2='category_id', string='Tags'
     )
 
-    _group_by_full = {
+    _group_by = {
         'finance_state_id': _read_group_finance_state_ids,
         'warehouse_state_id': _read_group_warehouse_state_ids,
         'manufacture_state_id': _read_group_manufacture_state_ids,

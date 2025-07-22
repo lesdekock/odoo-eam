@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo>
+    
 
         <!-- UoM -->
         <record id="uom_mro_degree" model="uom.uom">
@@ -46,5 +46,5 @@
             <value eval="[]"/>
         </function>
 
-    </data>
-</openerp>
+    
+</odoo>

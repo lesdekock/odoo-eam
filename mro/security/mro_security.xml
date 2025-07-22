@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="0">
+<odoo>
+    
 
         <record id="group_create_maintenance_request" model="res.groups">
             <field name="name">Create Maintenance Request</field>
@@ -15,9 +15,9 @@
             <field eval="[(4,ref('group_create_maintenance_request'))]" name="groups_id"/>
         </record>
 
-    </data>
+    
 
-    <data noupdate="1">
+    
 
         <record id="mro_request_self_not_draft" model="ir.rule">
             <field name="name">Not DRAFT self maintenance requests</field>
@@ -43,5 +43,5 @@
             <field name="groups" eval="[(4, ref('asset.group_mro_manager'))]"/>
         </record>  
 
-    </data>
-</openerp>
+    
+</odoo>

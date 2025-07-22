@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-	<data>
+<odoo>
+	
 
         <!-- Asset menu -->
         <menuitem name="Assets"
@@ -14,7 +14,7 @@
             <field name="name">asset.asset.form.purchase</field>
             <field name="model">asset.asset</field>
             <field name="arch" type="xml">
-                <form string="Assets" version="7.0">
+                <form string="Assets" >
                     <header>
                         <field name="finance_state_id" widget="statusbar" clickable="True"/>
                     </header>
@@ -227,5 +227,5 @@
             groups="purchase.group_purchase_manager"
             sequence="100"/>
     
- 	</data>
-</openerp>
+ 	
+</odoo>

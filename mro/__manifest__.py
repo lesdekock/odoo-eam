@@ -8,7 +8,7 @@
 
 {
     'name': 'MRO',
-    'version': '1.10',
+    'version': '17.0.1.0',
     'summary': 'Asset Maintenance, Repair and Operation',
     'description': """
 Manage Maintenance process in OpenERP

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-	<data>
+<odoo>
+	
 
         <!-- Update Meters menu -->
         <record id="mro_pm_meter_tree_view" model="ir.ui.view">
@@ -51,7 +51,7 @@
                 <tree string="Meters Logs" create="false" delete="false" editable="bottom">
                     <field name="asset_id" readonly="1"/>
                     <field name="name" readonly="1"/>
-                    <button icon="fa-list-alt" string="Reading History" name="%(open_reading_log)d" type="action" states="reading,reset"/>
+                    <button icon="fa-list-alt" string="Reading History" name="%(open_reading_log)d" type="action"/>
                     <field name="date" string="Reading Date" readonly="1"/>
                     <field name="value" string="Last Reading" readonly="1"/>
                     <field name="total_value" readonly="1"/>
@@ -82,43 +82,43 @@
             <field name="arch" type="xml">
                 <form string="Meter">
                     <header>
-                        <button name="activate_meter" states="draft" string="Attach" class="oe_highlight" type="object"/>
-                        <button name="reset_meter" states="reading" string="Detach" type="object"/>
-                        <button name="run_meter" states="reset" string="Attach" class="oe_highlight" type="object"/>
-                        <field name="state" widget="statusbar" statusbar_visible="reading" statusbar_colors='{"reset":"red","draft":"blue"}'/>
+                        <button name="activate_meter" invisible="[('state', '!=', 'draft')]" string="Attach" class="oe_highlight" type="object"/>
+                        <button name="reset_meter" invisible="[('state', '!=', 'reading')]" string="Detach" type="object"/>
+                        <button name="run_meter" invisible="[('state', '!=', 'reset')]" string="Attach" class="oe_highlight" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="reading"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
-                            <div class="oe_edit_only" states="draft">
+                            <div class="oe_edit_only" invisible="[('state', '!=', 'draft')]">
                                 <label for="name" string="Parameter"/>
                             </div>
-                            <h1><field name="name" class="oe_inline"/></h1>
+                            <h1><field name="name" class="oe_inline" readonly="[('state', '!=', 'draft')]"/></h1>
                         </div>
                         <div class="oe_right">
                             <h2><field name="asset_id" readonly="1"/></h2>
                         </div>
                         <group>
                             <group>
-                                <field name="new_value" attrs="{'invisible':['|',('state','not in',('reading', 'reset')),('reading_type','=','src'),'|',('state','not in',('reading', 'reset')),('state','=','reading'),]}"/>
-                                <field name="meter_uom" attrs="{'invisible':[('name','=',False)]}"/>
-                                <field name="reading_type"/>
-                                <field name="parent_meter_id" domain="[('state','!=','draft'),('reading_type','!=','src')]" attrs="{'invisible':[('reading_type','!=','src')],'required':[('reading_type','=','src')]}"/>
-                                <field name="parent_ratio_id" attrs="{'invisible':[('reading_type','!=','src')]}"/>
+                                <field name="new_value" invisible="['|', '|', ('state', 'not in', ('reading', 'reset')), ('reading_type', '=', 'src'), ('state', '=', 'reading')]"/>
+                                <field name="meter_uom" invisible="[('name', '=', False)]"/>
+                                <field name="reading_type" readonly="[('state', '!=', 'draft')]"/>
+                                <field name="parent_meter_id" domain="[('state','!=','draft'),('reading_type','!=','src')]" invisible="[('reading_type', '!=', 'src')]" required="[('reading_type', '=', 'src')]" readonly="[('state', '!=', 'draft')]"/>
+                                <field name="parent_ratio_id" invisible="[('reading_type', '!=', 'src')]"/>
                             </group>
                             <group>
                                 <field name="min_utilization"/>
                                 <field name="av_time"/>
-                                <field name="utilization" readonly="1" states="reading,reset"/>
+                                <field name="utilization" readonly="1" invisible="[('state', 'not in', ('reading', 'reset'))]"/>
                             </group>
                         </group>
                         <group string="Last Reading">
-                            <field name="view_line_ids" colspan="4" nolabel="1" readonly="1" attrs="{'invisible':[('state','not in',('reading', 'reset'))]}"/>
+                            <field name="view_line_ids" colspan="4" nolabel="1" readonly="1" invisible="[('state', 'not in', ('reading', 'reset'))]"/>
                             <group>
-                                <field name="value" attrs="{'invisible':[('state','in',('reading', 'reset'))]}"/>
+                                <field name="value" invisible="[('state', 'in', ('reading', 'reset'))]"/>
                                 <field name="date" invisible="1"/>
                             </group>
                             <group>
-                                <field name="total_value" attrs="{'invisible':[('state','in',('reading', 'reset'))]}"/>
+                                <field name="total_value" invisible="[('state', 'in', ('reading', 'reset'))]"/>
                             </group>
                         </group>
                     </sheet>
@@ -296,10 +296,10 @@
                              </group>
                             <group>
                                 <field name="active"/>
-                                <field name="parameter_uom" readonly="1" attrs="{'invisible':[('parameter_id','=',False)]}"/>
+                                <field name="parameter_uom" readonly="1" invisible="[('parameter_id','=',False)]"/>
                             </group>
                         </group>
-                        <field name="pm_rules_line_ids" context="{'category_id':category_id}" attrs="{'invisible':[('category_id','=',False)]}"  options='{"always_reload":True}'>
+                        <field name="pm_rules_line_ids" context="{'category_id':category_id}" invisible="[('category_id','=',False)]"  options='{"always_reload":True}'>
                             <tree string="Tasks" editable="bottom">
                                 <field name="task_id" domain="[('category_id','=',parent.category_id)]"/>
                                 <field name="meter_interval_id"/>
@@ -331,5 +331,5 @@
             groups="asset.group_mro_user"
             sequence="30"/>
 
- 	</data>
-</openerp>
+ 	
+</odoo>

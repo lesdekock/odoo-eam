@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo>
+    
     
         <!-- Resource: stock.location -->
         <record id="stock_location_locations_asset" model="stock.location">
@@ -23,5 +23,5 @@
             <field eval="'stock.location,'+str(stock_location_assets)" name="value"/>
         </record>
         
-     </data>
-</openerp>
+     
+</odoo>

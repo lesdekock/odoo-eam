@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo>
+    
         <!-- Asset states in Finance -->
         <record id="asset_state_planned" model="asset.state">
             <field name="name">Planned</field>
@@ -150,5 +150,5 @@
             <field name="state_color">6</field>
             <field name="sequence">3</field>
         </record>
-     </data>
-</openerp>
+     
+</odoo>

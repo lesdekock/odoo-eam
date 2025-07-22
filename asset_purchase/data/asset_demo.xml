@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo>
+    
         
         <!-- Resource: asset.asset -->
         <record id="asset.asset_asset_1" model="asset.asset">
@@ -15,5 +15,5 @@
             <field name="finance_state_id" ref="asset.asset_state_leased"/>
         </record>
 
-    </data>
-</openerp>
+    
+</odoo>

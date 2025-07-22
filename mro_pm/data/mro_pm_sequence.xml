@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo>
+    
         <!-- Sequences for PM Rules -->       
         <record id="sequence_mro_pm_rule" model="ir.sequence">
             <field name="name">PM Rule</field>
@@ -11,5 +11,5 @@
             <field name="number_increment">1</field>
         </record>
 
-    </data>
-</openerp>
+    
+</odoo>

@@ -9,7 +9,6 @@
 import time
 from odoo import api, fields, models
 # from odoo import netsvc
-from odoo.addons.base.models import decimal_precision as dp
 
 
 class MroOrder(models.Model):
@@ -57,7 +56,7 @@ class MroOrder(models.Model):
             order.parts_moved_lines = self.env['stock.move']
 
     name = fields.Char('Reference', size=64)
-    origin = fields.Char('Source Document', size=64, readonly=True, states={'draft': [('readonly', False)]},
+    origin = fields.Char('Source Document', size=64, readonly=True,
         help="Reference of the document that generated this maintenance order.")
     state = fields.Selection(STATE_SELECTION, 'Status', readonly=True,
         help="When the maintenance order is created the status is set to 'Draft'.\n\
@@ -66,30 +65,27 @@ class MroOrder(models.Model):
         When the maintenance is over, the status is set to 'Done'.", default='draft')
     maintenance_type = fields.Selection(
         selection=[('bm', 'Breakdown'), ('cm', 'Corrective')], string='Maintenance Type', required=True, readonly=True,
-        states={'draft': [('readonly', False)]}, default='bm'
+        default='bm'
     )
-    task_id = fields.Many2one('mro.task', 'Task', readonly=True, states={'draft': [('readonly', False)]})
+    task_id = fields.Many2one('mro.task', 'Task', readonly=True)
     description = fields.Char(
-        'Description', size=64, translate=True, required=True, readonly=True, states={'draft': [('readonly', False)]}
+        'Description', size=64, translate=True, required=True, readonly=True
     )
     asset_id = fields.Many2one(
-        'asset.asset', 'Asset', required=True, readonly=True, states={'draft': [('readonly', False)]}
+        'asset.asset', 'Asset', required=True, readonly=True
     )
     date_planned = fields.Datetime(
-        'Planned Date', required=True, readonly=True, states={'draft': [('readonly',False)]},
+        'Planned Date', required=True, readonly=True,
         default=time.strftime('%Y-%m-%d %H:%M:%S')
     )
     date_scheduled = fields.Datetime(
-        'Scheduled Date', required=True, readonly=True, states={
-            'draft': [('readonly', False)], 'released': [('readonly', False)], 'ready': [('readonly', False)]
-        }, default=time.strftime('%Y-%m-%d %H:%M:%S')
+        'Scheduled Date', required=True, readonly=True,
+        default=time.strftime('%Y-%m-%d %H:%M:%S')
     )
-    date_execution = fields.Datetime('Execution Date', required=True, states={
-        'done': [('readonly', True)], 'cancel': [('readonly', True)]
-    }, default=time.strftime('%Y-%m-%d %H:%M:%S'))
+    date_execution = fields.Datetime('Execution Date', required=True,
+        default=time.strftime('%Y-%m-%d %H:%M:%S'))
     parts_lines = fields.One2many(
-        'mro.order.parts.line', 'maintenance_id', 'Planned parts', readonly=True,
-        states={'draft': [('readonly', False)]}
+        'mro.order.parts.line', 'maintenance_id', 'Planned parts', readonly=True
     )
     parts_ready_lines = fields.One2many('stock.move', compute='_get_available_parts')
     parts_move_lines = fields.One2many('stock.move', compute='_get_available_parts')
@@ -101,7 +97,7 @@ class MroOrder(models.Model):
     problem_description = fields.Text('Problem Description')
     user_id = fields.Many2one('res.users', 'Responsible', default=lambda self: self._uid)
     company_id = fields.Many2one(
-        'res.company', 'Company', required=True, readonly=True, states={'draft': [('readonly', False)]},
+        'res.company', 'Company', required=True, readonly=True,
         default=lambda self: self.env['res.company']._company_default_get('mro.order')
     )
     procurement_group_id = fields.Many2one('procurement.group', 'Procurement group', copy=False)
@@ -337,13 +333,13 @@ class MroRequest(models.Model):
         If the request is confirmed the status is set to 'Execution'.\n\
         If the request is rejected the status is set to 'Rejected'.\n\
         When the maintenance is over, the status is set to 'Done'.", tracking=True, default='draft')
-    asset_id = fields.Many2one('asset.asset', 'Asset', required=True, readonly=True, states={'draft': [('readonly', False)]})
-    cause = fields.Char('Cause', size=64, translate=True, required=True, readonly=True, states={'draft': [('readonly', False)]})
-    description = fields.Text('Description', readonly=True, states={'draft': [('readonly', False)]})
+    asset_id = fields.Many2one('asset.asset', 'Asset', required=True, readonly=True)
+    cause = fields.Char('Cause', size=64, translate=True, required=True, readonly=True)
+    description = fields.Text('Description', readonly=True)
     reject_reason = fields.Text('Reject Reason', readonly=True)
-    requested_date = fields.Datetime('Requested Date', required=True, readonly=True, states={'draft': [('readonly', False)]}, help="Date requested by the customer for maintenance.", default=time.strftime('%Y-%m-%d %H:%M:%S'))
-    execution_date = fields.Datetime('Execution Date', required=True, readonly=True, states={'draft':[('readonly',False)],'claim':[('readonly',False)]}, default=time.strftime('%Y-%m-%d %H:%M:%S'))
-    breakdown = fields.Boolean('Breakdown', readonly=True, states={'draft': [('readonly', False)]}, default=False)
+    requested_date = fields.Datetime('Requested Date', required=True, readonly=True, help="Date requested by the customer for maintenance.", default=time.strftime('%Y-%m-%d %H:%M:%S'))
+    execution_date = fields.Datetime('Execution Date', required=True, readonly=True, default=time.strftime('%Y-%m-%d %H:%M:%S'))
+    breakdown = fields.Boolean('Breakdown', readonly=True, default=False)
     create_uid = fields.Many2one('res.users', 'Responsible')
 
     @api.onchange('requested_date')

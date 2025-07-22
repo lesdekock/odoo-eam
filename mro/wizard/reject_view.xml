@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
+    
 
         <record id="view_request_reject_wizard" model="ir.ui.view">
             <field name="name">Reject Request</field>
             <field name="model">mro.request.reject</field>
             <field name="arch" type="xml">
-                <form string="Reject Request" version="7.0">
+                <form string="Reject Request">
                     <group>
                         <field name="reject_reason"/>
                     </group>
@@ -27,5 +27,5 @@
             <field name="target">new</field>
         </record>
 
-    </data>
-</openerp>
+    
+</odoo>

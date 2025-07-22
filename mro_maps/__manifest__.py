@@ -8,7 +8,7 @@
 
 {
     'name': 'MRO Maps',
-    'version': '0.3',
+    'version': '17.0.1.0',
     'category': 'Industries',
     'summary': 'Show asset positions',
     'description': """

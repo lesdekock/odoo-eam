@@ -8,7 +8,7 @@
 
 {
     'name': 'MRO CBM',
-    'version': '1.5',
+    'version': '17.0.1.0',
     'summary': 'Asset Predictive Maintenance',
     'description': """
 Manage Predictive Maintenance process in OpenERP

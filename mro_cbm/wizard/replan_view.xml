@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
+    
 
         <record id="view_replan_cbm_wizard" model="ir.ui.view">
             <field name="name">Replan PdM</field>
             <field name="model">mro.cbm.replan</field>
             <field name="arch" type="xml">
-                <form string="Replan PdM" version="7.0">
+                <form string="Replan PdM" >
                     <footer>
                         <button name="replan_cbm" string="Replan PdM" type="object"  class="oe_highlight"  />
                         or
@@ -24,5 +24,5 @@
             <field name="target">new</field>
         </record>
 
-    </data>
-</openerp>
+    
+</odoo>
