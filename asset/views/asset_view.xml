@@ -286,7 +286,7 @@
             <field name="name">asset.state.form</field>
             <field name="model">asset.state</field>
             <field name="arch" type="xml">
-                <form string="form string="State" version="7.0"">
+                <form string="State">
                     <sheet>
                         <div class="oe_title">
                             <label for="name"/>

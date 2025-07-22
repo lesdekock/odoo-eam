@@ -13,7 +13,7 @@
             <field name="name">asset.asset.form.account</field>
             <field name="model">asset.asset</field>
             <field name="arch" type="xml">
-                <form string="Assets" version="7.0">
+                <form string="Assets">
                     <header>
                         <field name="accounting_state_id" widget="statusbar" clickable="True"/>
                     </header>
