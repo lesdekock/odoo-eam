@@ -98,7 +98,7 @@ class MroOrder(models.Model):
     user_id = fields.Many2one('res.users', 'Responsible', default=lambda self: self._uid)
     company_id = fields.Many2one(
         'res.company', 'Company', required=True, readonly=True,
-        default=lambda self: self.env['res.company']._company_default_get('mro.order')
+        default=lambda self: self.env.company
     )
     procurement_group_id = fields.Many2one('procurement.group', 'Procurement group', copy=False)
     category_ids = fields.Many2many(related='asset_id.category_ids', string='Asset Category', readonly=True)

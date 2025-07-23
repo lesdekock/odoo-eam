@@ -43,7 +43,7 @@ class MroWorkOrder(models.Model):
     user_id = fields.Many2one('res.users', 'Responsible', default=lambda self: self._uid)
     company_id = fields.Many2one(
         'res.company', 'Company',
-        default=lambda self: self.env['res.company']._company_default_get('mro.workorder'),
+        default=lambda self: self.env.company,
         required=True)
     mo_ids = fields.One2many('mro.order', 'wo_id', 'Maintenance Order')
 
